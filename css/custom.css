@@ -1,0 +1,12 @@
+.form-control {
+	width: auto;
+}
+
+@media (min-width: 768px) {
+	label {
+		min-width: 80px;
+	}
+	.form-control {
+		display: inline-block;
+	}
+}
