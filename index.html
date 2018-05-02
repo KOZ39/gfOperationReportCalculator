@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"">
 	<title>소녀전선 작전보고서 계산기</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/custom.css">
@@ -26,15 +26,15 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="presentLv">현재 레벨&nbsp;</label>
-				<input type="number" class="form-control" id="presentLv" aria-describedby="presentLv">
+				<input type="number" class="form-control" id="presentLv" pattern="\d*" aria-describedby="presentLv">
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="presentExp">현재 경험치&nbsp;</label>
-				<input type="number" class="form-control" id="presentExp" aria-describedby="presentExp">
+				<input type="number" class="form-control" id="presentExp" pattern="\d*" aria-describedby="presentExp">
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="targetLv">목표 레벨&nbsp;</label>
-				<input type="number" class="form-control" id="targetLv" aria-describedby="targetLv">
+				<input type="number" class="form-control" id="targetLv" pattern="\d*" aria-describedby="targetLv">
 			</div>
 			<hr>
 			<b>필요 작전보고서 :</b>
