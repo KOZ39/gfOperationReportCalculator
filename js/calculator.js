@@ -135,7 +135,7 @@ function reportCalc() {
 	var tempLv = 0;
 	var report = 0;
 
-	if(dollAccExp[presentLv+1] - dollAccExp[presentLv] > presentExp && presentExp >= 0 && targetLv > presentLv) {
+	if(dollAccExp[presentLv+1] - dollAccExp[presentLv] > presentExp && presentExp >= 0 && targetLv > presentLv && targetLv < dollAccExp.length) {
 		if(targetLv > 115) {
 			tempLv = presentLv > 115 ? presentLv : 115;
 			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
