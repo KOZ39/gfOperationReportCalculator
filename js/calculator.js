@@ -137,30 +137,35 @@ function reportCalc() {
 	var tempLv = 0;
 	var report = 0;
 
-	if(fairy == 1 && dollAccExp[currentLv+1] - dollAccExp[currentLv] > currentExp && currentExp >= 0 && targetLv > currentLv && targetLv < dollAccExp.length || fairy == 3 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && currentExp >= 0 && targetLv > currentLv && targetLv <= 100) {
-		if(targetLv > 115) {
-			tempLv = Math.max(currentLv, 115);
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
-			targetLv = 115;
-		}
-		if(targetLv > 110 && currentLv < 115) {
-			tempLv = Math.max(currentLv, 110);
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
-			targetLv = 110;
-		}
-		if(targetLv > 100 && currentLv < 110) {
-			tempLv = Math.max(currentLv, 100);
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
-			targetLv = 100;
-		}
+	if(fairy == 1 && targetLv < dollAccExp.length || fairy == 3 && targetLv <= 100) {
+		if((dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && currentExp >= 0 && targetLv > currentLv) {
+			if(targetLv > 115) {
+				tempLv = Math.max(currentLv, 115);
+				report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
+				targetLv = 115;
+			}
+			if(targetLv > 110 && currentLv < 115) {
+				tempLv = Math.max(currentLv, 110);
+				report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
+				targetLv = 110;
+			}
+			if(targetLv > 100 && currentLv < 110) {
+				tempLv = Math.max(currentLv, 100);
+				report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
+				targetLv = 100;
+			}
 
-		if(targetLv <= 100 && currentLv < 100) {
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv]) / 3000);
+			if(targetLv <= 100 && currentLv < 100) {
+				report += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv]) / 3000);
+			}
+
+			report -= Math.floor(currentExp / 3000)
+
+			document.getElementById("reportCalcResult").innerText = report * fairy;
 		}
-
-		report -= Math.floor(currentExp / 3000)
-
-		document.getElementById("reportCalcResult").innerText = report * fairy;
+		else {
+			document.getElementById("reportCalcResult").innerText = "N/A";
+		}
 	}
 	else {
 		document.getElementById("reportCalcResult").innerText = "N/A";
