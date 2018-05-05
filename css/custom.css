@@ -1,3 +1,6 @@
+.checkbox-inline, .radio-inline {
+	margin-bottom: 10px;
+}
 .form-control {
 	width: auto;
 }
