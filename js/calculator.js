@@ -123,40 +123,40 @@ dollAccExp[120] = 30283200;
 
 document.getElementById("oath").addEventListener("change", reportCalc, false);
 
-document.getElementById("presentLv").addEventListener("keyup", reportCalc, false);
-document.getElementById("presentExp").addEventListener("keyup", reportCalc, false);
+document.getElementById("currentLv").addEventListener("keyup", reportCalc, false);
+document.getElementById("currentExp").addEventListener("keyup", reportCalc, false);
 document.getElementById("targetLv").addEventListener("keyup", reportCalc, false);
 
 function reportCalc() {
-	var presentLv = Number(document.getElementById("presentLv").value);
-	var presentExp = Number(document.getElementById("presentExp").value);
-	var targetLv = Number(document.getElementById("targetLv").value);
 	var oath = document.getElementById("oath").checked + 1;
+	var currentLv = Number(document.getElementById("currentLv").value);
+	var currentExp = Number(document.getElementById("currentExp").value);
+	var targetLv = Number(document.getElementById("targetLv").value);
 	var tempLv = 0;
 	var report = 0;
 
-	if(dollAccExp[presentLv+1] - dollAccExp[presentLv] > presentExp && presentExp >= 0 && targetLv > presentLv && targetLv < dollAccExp.length) {
+	if(dollAccExp[currentLv+1] - dollAccExp[currentLv] > currentExp && currentExp >= 0 && targetLv > currentLv && targetLv < dollAccExp.length) {
 		if(targetLv > 115) {
-			tempLv = presentLv > 115 ? presentLv : 115;
+			tempLv = currentLv > 115 ? currentLv : 115;
 			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
 			targetLv = 115;
 		}
-		if(targetLv > 110 && presentLv < 115) {
-			tempLv = presentLv > 110 ? presentLv : 110;
+		if(targetLv > 110 && currentLv < 115) {
+			tempLv = currentLv > 110 ? currentLv : 110;
 			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
 			targetLv = 110;
 		}
-		if(targetLv > 100 && presentLv < 110) {
-			tempLv = presentLv > 100 ? presentLv : 100;
+		if(targetLv > 100 && currentLv < 110) {
+			tempLv = currentLv > 100 ? currentLv : 100;
 			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
 			targetLv = 100;
 		}
 
-		if(targetLv <= 100 && presentLv < 100) {
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[presentLv]) / 3000);
+		if(targetLv <= 100 && currentLv < 100) {
+			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv]) / 3000);
 		}
 
-		report -= Math.floor(presentExp / 3000)
+		report -= Math.floor(currentExp / 3000)
 
 		document.getElementById("reportCalcResult").innerText = report;
 	}
