@@ -137,7 +137,7 @@ function reportCalc() {
 	var tempLv = 0;
 	var report = 0;
 
-	if((dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && currentExp >= 0 && targetLv > currentLv && targetLv < dollAccExp.length) {
+	if(fairy == 1 && dollAccExp[currentLv+1] - dollAccExp[currentLv] > currentExp && currentExp >= 0 && targetLv > currentLv && targetLv < dollAccExp.length || fairy == 3 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && currentExp >= 0 && targetLv > currentLv && targetLv <= 100) {
 		if(targetLv > 115) {
 			tempLv = Math.max(currentLv, 115);
 			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[tempLv]) / (3000 * oath));
