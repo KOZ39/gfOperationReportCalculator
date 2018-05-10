@@ -6,7 +6,7 @@
 }
 
 @media (min-width: 768px) {
-	label {
+	.form-group > label {
 		min-width: 80px;
 	}
 	.form-control {
