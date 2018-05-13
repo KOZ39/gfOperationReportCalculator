@@ -2,49 +2,54 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<title>소녀전선 작전보고서 계산기</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-dark bg-dark">
 		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="./">작전보고서 계산기</a>
-			</div>
+			<a class="navbar-brand" href="./">작전보고서 계산기</a>
 		</div>
 	</nav>
 	<div class="container">
-		<div class="col-sm-6 col-md-4">
-			<hr>
-			<label class="checkbox-inline">
-				<input type="checkbox" id="fairy"> 요정
-			</label>
-			<label class="checkbox-inline">
-				<input type="checkbox" id="oath"> 서약
-			</label>
-			<div class="form-group">
-				<label class="control-label" for="currentLv">현재 레벨&nbsp;</label>
-				<input type="number" class="form-control" id="currentLv" pattern="\d*" aria-describedby="currentLv">
+		<div class="my-4">
+			<div class="col-md-6 col-lg-4">
+				<hr>
+				<div class="text-center">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="checkbox" id="oath">
+						<label class="form-check-label" for="oath">서약</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="checkbox" id="fairy">
+						<label class="form-check-label" for="fairy">요정</label>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col">
+						<label for="currentLv">현재 레벨</label>
+						<input type="number" class="form-control" id="currentLv" pattern="\d*">
+					</div>
+					<div class="col">
+						<label for="currentExp">현재 경험치</label>
+						<input type="number" class="form-control" id="currentExp" pattern="\d*">
+					</div>
+					<div class="col">
+						<label for="targetLv">목표 레벨</label>
+						<input type="number" class="form-control" id="targetLv" pattern="\d*">
+					</div>
+				</div>
+				<hr>
+				필요 작전보고서 :
+				<span id="reportCalcResult">N/A</span>
+				개
 			</div>
-			<div class="form-group">
-				<label class="control-label" for="currentExp">현재 경험치&nbsp;</label>
-				<input type="number" class="form-control" id="currentExp" pattern="\d*" aria-describedby="currentExp">
-			</div>
-			<div class="form-group">
-				<label class="control-label" for="targetLv">목표 레벨&nbsp;</label>
-				<input type="number" class="form-control" id="targetLv" pattern="\d*" aria-describedby="targetLv">
-			</div>
-			<hr>
-			<b>필요 작전보고서 :</b>
-			<span id="reportCalcResult">N/A</span>
-			개
 		</div>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="js/calculator.js"></script>
 </body>
 </html>

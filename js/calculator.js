@@ -121,16 +121,16 @@ dollAccExp[118] = 19283200;
 dollAccExp[119] = 24283200;
 dollAccExp[120] = 30283200;
 
-document.getElementById("fairy").addEventListener("change", ReportCalc, false);
 document.getElementById("oath").addEventListener("change", ReportCalc, false);
+document.getElementById("fairy").addEventListener("change", ReportCalc, false);
 
 document.getElementById("currentLv").addEventListener("keyup", ReportCalc, false);
 document.getElementById("currentExp").addEventListener("keyup", ReportCalc, false);
 document.getElementById("targetLv").addEventListener("keyup", ReportCalc, false);
 
 function ReportCalc() {
-	var fairy = document.getElementById("fairy").checked ? 3 : 1;
 	var oath = document.getElementById("oath").checked + 1;
+	var fairy = document.getElementById("fairy").checked ? 3 : 1;
 	var currentLv = Number(document.getElementById("currentLv").value);
 	var currentExp = Number(document.getElementById("currentExp").value);
 	var targetLv = Number(document.getElementById("targetLv").value);
@@ -165,7 +165,7 @@ function ReportCalc() {
 }
 
 function IsValidLv(fairy, currentLv, currentExp, targetLv) {
-	if((fairy == 1 && targetLv < dollAccExp.length || fairy == 3 && targetLv <= 100) && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && currentExp >= 0 && targetLv > currentLv) {
+	if(targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length) || (fairy == 3 && targetLv <= 100)) {
 			return true;
 	}
 	return false;
