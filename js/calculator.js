@@ -129,44 +129,45 @@ document.getElementById("currentExp").addEventListener("keyup", ReportCalc, fals
 document.getElementById("targetLv").addEventListener("keyup", ReportCalc, false);
 
 function ReportCalc() {
-	var oath = document.getElementById("oath").checked + 1;
-	var fairy = document.getElementById("fairy").checked ? 3 : 1;
-	var currentLv = Number(document.getElementById("currentLv").value);
-	var currentExp = Number(document.getElementById("currentExp").value);
-	var targetLv = Number(document.getElementById("targetLv").value);
-	var report = 0;
+  var oath = document.getElementById("oath").checked + 1;
+  var fairy = document.getElementById("fairy").checked ? 3 : 1;
+  var currentLv = Number(document.getElementById("currentLv").value);
+  var currentExp = Number(document.getElementById("currentExp").value);
+  var targetLv = Number(document.getElementById("targetLv").value);
+  var report = 0;
 
-	if(IsValidLv(fairy, currentLv, currentExp, targetLv)) {
-		if(targetLv > 115) {
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
-			targetLv = 115;
-			currentExp = 0;
-		}
-		if(targetLv > 110 && currentLv < 115) {
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
-			targetLv = 110;
-			currentExp = 0;
-		}
-		if(targetLv > 100 && currentLv < 110) {
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
-			targetLv = 100;
-			currentExp = 0;
-		}
+  if (IsValidLv(fairy, currentLv, currentExp, targetLv)) {
+    if (targetLv > 115) {
+      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
+      targetLv = 115;
+      currentExp = 0;
+    }
 
-		if(targetLv <= 100 && currentLv < 100) {
-			report += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv] - currentExp) / 3000);
-		}
+    if (targetLv > 110 && currentLv < 115) {
+      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
+      targetLv = 110;
+      currentExp = 0;
+    }
 
-		document.getElementById("reportCalcResult").innerText = report * fairy;
-	}
-	else {
-		document.getElementById("reportCalcResult").innerText = "N/A";
-	}
+    if (targetLv > 100 && currentLv < 110) {
+      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
+      targetLv = 100;
+      currentExp = 0;
+    }
+
+    if (targetLv <= 100 && currentLv < 100) {
+      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv] - currentExp) / 3000);
+    }
+
+    document.getElementById("reportCalcResult").innerText = report * fairy;
+  } else {
+    document.getElementById("reportCalcResult").innerText = "N/A";
+  }
 }
 
 function IsValidLv(fairy, currentLv, currentExp, targetLv) {
-	if(targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length) || (fairy == 3 && targetLv <= 100)) {
-			return true;
-	}
-	return false;
+  if (targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length) || (fairy == 3 && targetLv <= 100))
+    return true;
+
+  return false;
 }
