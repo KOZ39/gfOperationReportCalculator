@@ -14,36 +14,38 @@
   </nav>
   <div class="container">
     <div class="my-4">
-      <div class="col-md-6 col-lg-4">
-        <hr>
-        <div class="text-center">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="oath">
-            <label class="form-check-label" for="oath">서약</label>
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <hr>
+          <div class="text-center">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="oath">
+              <label class="form-check-label" for="oath">서약</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="fairy">
+              <label class="form-check-label" for="fairy">요정</label>
+            </div>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="fairy">
-            <label class="form-check-label" for="fairy">요정</label>
+          <div class="form-row">
+            <div class="col">
+              <label for="currentLv">현재 레벨</label>
+              <input type="number" class="form-control" id="currentLv" pattern="\d*">
+            </div>
+            <div class="col">
+              <label for="currentExp">현재 경험치</label>
+              <input type="number" class="form-control" id="currentExp" pattern="\d*">
+            </div>
+            <div class="col">
+            <label for="targetLv">목표 레벨</label>
+              <input type="number" class="form-control" id="targetLv" pattern="\d*">
+            </div>
           </div>
+          <hr>
+          필요 작전보고서 :
+          <span id="reportCalcResult">N/A</span>
+          개
         </div>
-        <div class="form-row">
-          <div class="col">
-            <label for="currentLv">현재 레벨</label>
-            <input type="number" class="form-control" id="currentLv" pattern="\d*">
-          </div>
-          <div class="col">
-            <label for="currentExp">현재 경험치</label>
-            <input type="number" class="form-control" id="currentExp" pattern="\d*">
-          </div>
-          <div class="col">
-          <label for="targetLv">목표 레벨</label>
-            <input type="number" class="form-control" id="targetLv" pattern="\d*">
-          </div>
-        </div>
-        <hr>
-        필요 작전보고서 :
-        <span id="reportCalcResult">N/A</span>
-        개
       </div>
     </div>
   </div>
