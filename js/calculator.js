@@ -1,173 +1,79 @@
-const dollAccExp = [];
-dollAccExp[0] = 0;
-dollAccExp[1] = 0;
-dollAccExp[2] = 100;
-dollAccExp[3] = 300;
-dollAccExp[4] = 600;
-dollAccExp[5] = 1000;
-dollAccExp[6] = 1500;
-dollAccExp[7] = 2100;
-dollAccExp[8] = 2800;
-dollAccExp[9] = 3600;
-dollAccExp[10] = 4500;
-dollAccExp[11] = 5500;
-dollAccExp[12] = 6600;
-dollAccExp[13] = 7800;
-dollAccExp[14] = 9100;
-dollAccExp[15] = 10500;
-dollAccExp[16] = 12000;
-dollAccExp[17] = 13600;
-dollAccExp[18] = 15300;
-dollAccExp[19] = 17100;
-dollAccExp[20] = 19000;
-dollAccExp[21] = 21000;
-dollAccExp[22] = 23100;
-dollAccExp[23] = 25300;
-dollAccExp[24] = 27600;
-dollAccExp[25] = 30000;
-dollAccExp[26] = 32500;
-dollAccExp[27] = 35100;
-dollAccExp[28] = 37900;
-dollAccExp[29] = 41000;
-dollAccExp[30] = 44400;
-dollAccExp[31] = 48600;
-dollAccExp[32] = 53200;
-dollAccExp[33] = 58200;
-dollAccExp[34] = 63600;
-dollAccExp[35] = 69400;
-dollAccExp[36] = 75700;
-dollAccExp[37] = 82400;
-dollAccExp[38] = 89600;
-dollAccExp[39] = 97300;
-dollAccExp[40] = 105500;
-dollAccExp[41] = 114300;
-dollAccExp[42] = 123600;
-dollAccExp[43] = 133500;
-dollAccExp[44] = 144000;
-dollAccExp[45] = 155100;
-dollAccExp[46] = 166900;
-dollAccExp[47] = 179400;
-dollAccExp[48] = 192500;
-dollAccExp[49] = 206400;
-dollAccExp[50] = 221000;
-dollAccExp[51] = 236400;
-dollAccExp[52] = 252500;
-dollAccExp[53] = 269400;
-dollAccExp[54] = 287100;
-dollAccExp[55] = 305700;
-dollAccExp[56] = 325200;
-dollAccExp[57] = 345600;
-dollAccExp[58] = 366900;
-dollAccExp[59] = 389200;
-dollAccExp[60] = 412500;
-dollAccExp[61] = 436800;
-dollAccExp[62] = 462100;
-dollAccExp[63] = 488400;
-dollAccExp[64] = 515800;
-dollAccExp[65] = 544300;
-dollAccExp[66] = 573900;
-dollAccExp[67] = 604700;
-dollAccExp[68] = 636700;
-dollAccExp[69] = 669900;
-dollAccExp[70] = 704300;
-dollAccExp[71] = 749400;
-dollAccExp[72] = 796200;
-dollAccExp[73] = 844800;
-dollAccExp[74] = 895200;
-dollAccExp[75] = 947400;
-dollAccExp[76] = 1001400;
-dollAccExp[77] = 1057300;
-dollAccExp[78] = 1115200;
-dollAccExp[79] = 1175000;
-dollAccExp[80] = 1236800;
-dollAccExp[81] = 1300700;
-dollAccExp[82] = 1366700;
-dollAccExp[83] = 1434800;
-dollAccExp[84] = 1505100;
-dollAccExp[85] = 1577700;
-dollAccExp[86] = 1652500;
-dollAccExp[87] = 1729600;
-dollAccExp[88] = 1809100;
-dollAccExp[89] = 1891000;
-dollAccExp[90] = 1975300;
-dollAccExp[91] = 2087900;
-dollAccExp[92] = 2204000;
-dollAccExp[93] = 2323500;
-dollAccExp[94] = 2446600;
-dollAccExp[95] = 2573300;
-dollAccExp[96] = 2703700;
-dollAccExp[97] = 2837800;
-dollAccExp[98] = 2975700;
-dollAccExp[99] = 3117500;
-dollAccExp[100] = 3263200;
-dollAccExp[101] = 3363200;
-dollAccExp[102] = 3483200;
-dollAccExp[103] = 3623200;
-dollAccExp[104] = 3783200;
-dollAccExp[105] = 3963200;
-dollAccExp[106] = 4163200;
-dollAccExp[107] = 4383200;
-dollAccExp[108] = 4623200;
-dollAccExp[109] = 4903200;
-dollAccExp[110] = 5263200;
-dollAccExp[111] = 5743200;
-dollAccExp[112] = 6383200;
-dollAccExp[113] = 7283200;
-dollAccExp[114] = 8483200;
-dollAccExp[115] = 10083200;
-dollAccExp[116] = 12283200;
-dollAccExp[117] = 15283200;
-dollAccExp[118] = 19283200;
-dollAccExp[119] = 24283200;
-dollAccExp[120] = 30283200;
+const dollAccExp = [
+    0,
+    0, 100, 300, 600, 1000,
+    1500, 2100, 2800, 3600, 4500,
+    5500, 6600, 7800, 9100, 10500,
+    12000, 13600, 15300, 17100, 19000,
+    21000, 23100, 25300, 27600, 30000,
+    32500, 35100, 37900, 41000, 44400,
+    48600, 53200, 58200, 63600, 69400,
+    75700, 82400, 89600, 97300, 105500,
+    114300, 123600, 133500, 144000, 155100,
+    166900, 179400, 192500, 206400, 221000,
+    236400, 252500, 269400, 287100, 305700,
+    325200, 345600, 366900, 389200, 412500,
+    436800, 462100, 488400, 515800, 544300,
+    573900, 604700, 636700, 669900, 704300,
+    749400, 796200, 844800, 895200, 947400,
+    1001400, 1057300, 1115200, 1175000, 1236800,
+    1300700, 1366700, 1434800, 1505100, 1577700,
+    1652500, 1729600, 1809100, 1891000, 1975300,
+    2087900, 2204000, 2323500, 2446600, 2573300,
+    2703700, 2837800, 2975700, 3117500, 3263200,
+    3363200, 3483200, 3623200, 3783200, 3963200,
+    4163200, 4383200, 4623200, 4903200, 5263200,
+    5743200, 6383200, 7283200, 8483200, 10083200,
+    12283200, 15283200, 19283200, 24283200, 30283200
+];
 
-document.getElementById("oath").addEventListener("change", ReportCalc, false);
-document.getElementById("fairy").addEventListener("change", ReportCalc, false);
+document.getElementById("oath").addEventListener("change", OperationReportCalc);
+document.getElementById("fairy").addEventListener("change", OperationReportCalc);
 
-document.getElementById("currentLv").addEventListener("keyup", ReportCalc, false);
-document.getElementById("currentExp").addEventListener("keyup", ReportCalc, false);
-document.getElementById("targetLv").addEventListener("keyup", ReportCalc, false);
+document.getElementById("currentLv").addEventListener("keyup", OperationReportCalc);
+document.getElementById("currentExp").addEventListener("keyup", OperationReportCalc);
+document.getElementById("targetLv").addEventListener("keyup", OperationReportCalc);
 
-function ReportCalc() {
-  var oath = document.getElementById("oath").checked + 1;
-  var fairy = document.getElementById("fairy").checked ? 3 : 1;
-  var currentLv = Number(document.getElementById("currentLv").value);
-  var currentExp = Number(document.getElementById("currentExp").value);
-  var targetLv = Number(document.getElementById("targetLv").value);
-  var report = 0;
+function OperationReportCalc() {
+    var oath = document.getElementById("oath").checked + 1;
+    var fairy = document.getElementById("fairy").checked ? 3 : 1;
+    var currentLv = Number(document.getElementById("currentLv").value);
+    var currentExp = Number(document.getElementById("currentExp").value);
+    var targetLv = Number(document.getElementById("targetLv").value);
+    var operationRepor = 0;
 
-  if (IsValidLv(fairy, currentLv, currentExp, targetLv)) {
-    if (targetLv > 115) {
-      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
-      targetLv = 115;
-      currentExp = 0;
+    if (IsValidLv(fairy, currentLv, currentExp, targetLv)) {
+        if (targetLv > 115) {
+            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
+            targetLv = 115;
+            currentExp = 0;
+        }
+
+        if (targetLv > 110 && currentLv < 115) {
+            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
+            targetLv = 110;
+            currentExp = 0;
+        }
+
+        if (targetLv > 100 && currentLv < 110) {
+            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
+            targetLv = 100;
+            currentExp = 0;
+        }
+
+        if (targetLv <= 100 && currentLv < 100) {
+            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv] - currentExp) / 3000);
+        }
+
+        document.getElementById("operationReporCalcResult").innerText = operationRepor * fairy + " 개";
     }
-
-    if (targetLv > 110 && currentLv < 115) {
-      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
-      targetLv = 110;
-      currentExp = 0;
+    else {
+        document.getElementById("operationReporCalcResult").innerText = "N/A";
     }
-
-    if (targetLv > 100 && currentLv < 110) {
-      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
-      targetLv = 100;
-      currentExp = 0;
-    }
-
-    if (targetLv <= 100 && currentLv < 100) {
-      report += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv] - currentExp) / 3000);
-    }
-
-    document.getElementById("reportCalcResult").innerText = report * fairy;
-  } else {
-    document.getElementById("reportCalcResult").innerText = "N/A";
-  }
 }
 
 function IsValidLv(fairy, currentLv, currentExp, targetLv) {
-  if (targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length) || (fairy == 3 && targetLv <= 100))
-    return true;
+    if (targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length) || (fairy == 3 && targetLv <= 100))
+        return true;
 
-  return false;
+    return false;
 }
