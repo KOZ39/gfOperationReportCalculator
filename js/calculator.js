@@ -61,10 +61,10 @@ function OperationReportCalc() {
         }
 
         if (targetLv <= 100 && currentLv < 100) {
-            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[currentLv] - currentExp) / 3000);
+            operationRepor += Math.ceil(((dollAccExp[targetLv] - dollAccExp[currentLv]) * fairy - currentExp) / 3000);
         }
 
-        document.getElementById("operationReporCalcResult").innerText = operationRepor * fairy + " 개";
+        document.getElementById("operationReporCalcResult").innerText = operationRepor + " 개";
     }
     else {
         document.getElementById("operationReporCalcResult").innerText = "N/A";
