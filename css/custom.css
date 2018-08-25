@@ -1,43 +1,43 @@
 .text-keep-all {
-	word-break: keep-all !important;
+    word-break: keep-all !important;
 }
 
 .text-keep-all label{
-	width: 85%;
+    width: 85%;
 }
 
 @media (min-width: 576px) {
-	.text-sm-nowrap {
-		white-space: nowrap !important;
-	}
-	.text-sm-keep-all {
-		word-break: keep-all !important;
-	}
+    .text-sm-nowrap {
+        white-space: nowrap !important;
+    }
+    .text-sm-keep-all {
+        word-break: keep-all !important;
+    }
 }
 
 @media (min-width: 768px) {
-	.text-md-nowrap {
-		white-space: nowrap !important;
-	}
-	.text-md-keep-all {
-		word-break: keep-all !important;
-	}	
+    .text-md-nowrap {
+        white-space: nowrap !important;
+    }
+    .text-md-keep-all {
+        word-break: keep-all !important;
+    }    
 }
-	
+    
 @media (min-width: 992px) {
-	.text-lg-nowrap {
-		white-space: nowrap !important;
-	}
-	.text-lg-keep-all {
-		word-break: keep-all !important;
-	}
+    .text-lg-nowrap {
+        white-space: nowrap !important;
+    }
+    .text-lg-keep-all {
+        word-break: keep-all !important;
+    }
 }
 
 @media (min-width: 1200px) {
-	.text-xl-nowrap {
-		white-space: nowrap !important;
-	}
-	.text-xl-keep-all {
-		word-break: keep-all !important;
-	}
+    .text-xl-nowrap {
+        white-space: nowrap !important;
+    }
+    .text-xl-keep-all {
+        word-break: keep-all !important;
+    }
 }
