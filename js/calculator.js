@@ -39,40 +39,40 @@ function OperationReportCalc() {
     var currentLv = Number(document.getElementById("currentLv").value);
     var currentExp = Number(document.getElementById("currentExp").value);
     var targetLv = Number(document.getElementById("targetLv").value);
-    var operationRepor = 0;
+    var operationReport = 0;
 
     if (IsValidLv(fairy, currentLv, currentExp, targetLv)) {
         if (targetLv > 115) {
-            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
+            operationReport += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
             targetLv = 115;
             currentExp = 0;
         }
 
         if (targetLv > 110 && currentLv < 115) {
-            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
+            operationReport += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
             targetLv = 110;
             currentExp = 0;
         }
 
         if (targetLv > 100 && currentLv < 110) {
-            operationRepor += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
+            operationReport += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
             targetLv = 100;
             currentExp = 0;
         }
 
         if (targetLv <= 100 && currentLv < 100) {
-            operationRepor += Math.ceil(((dollAccExp[targetLv] - dollAccExp[currentLv]) * fairy - currentExp) / 3000);
+            operationReport += Math.ceil(((dollAccExp[targetLv] - dollAccExp[currentLv]) * fairy - currentExp) / 3000);
         }
 
-        document.getElementById("operationReporCalcResult").innerText = operationRepor + " 개";
+		document.getElementById("operationReporCalcResult").innerText = "필요 작전보고서 : " + operationReport + "개";
     }
     else {
-        document.getElementById("operationReporCalcResult").innerText = "N/A";
+		document.getElementById("operationReporCalcResult").innerText = "필요 작전보고서 : N/A";
     }
 }
 
 function IsValidLv(fairy, currentLv, currentExp, targetLv) {
-    if (targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length) || (fairy == 3 && targetLv <= 100))
+    if (targetLv > currentLv && currentExp >= 0 && (dollAccExp[currentLv+1] - dollAccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < dollAccExp.length || fairy == 3 && targetLv <= 100))
         return true;
 
     return false;
