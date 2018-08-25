@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/custom.min.css">
 		<title>소녀전선 작전보고서 계산기</title>
 	</head>
 	<body class="bg-light">
@@ -15,7 +16,7 @@
 		<div class="container">
 			<div class="my-4">
 				<div class="row">
-					<div class="col-md-6 col-lg-4 py-3 bg-white">
+					<div class="col-md-6 col-lg-4 mb-4 mb-md-0 py-3 bg-white">
 						<div class="text-center">
 							<h5>작전보고서 계산기</h5>
 							<hr>
@@ -30,21 +31,51 @@
 						</div>
 						<div class="form-row">
 							<div class="col">
-								<label for="currentLv">현재 레벨</label>
-								<input type="number" class="form-control" id="currentLv" pattern="\d*">
+								<label for="dollCurrentLv">현재 레벨</label>
+								<input type="number" class="form-control" id="dollCurrentLv" pattern="\d*">
 							</div>
 							<div class="col">
-								<label for="currentExp">현재 경험치</label>
-								<input type="number" class="form-control" id="currentExp" pattern="\d*">
+								<label for="dollCurrentExp">현재 경험치</label>
+								<input type="number" class="form-control" id="dollCurrentExp" pattern="\d*">
 							</div>
 							<div class="col">
-								<label for="targetLv">목표 레벨</label>
-								<input type="number" class="form-control" id="targetLv" pattern="\d*">
+								<label for="dollTargetLv">목표 레벨</label>
+								<input type="number" class="form-control" id="dollTargetLv" pattern="\d*">
 							</div>
 						</div>
 						<hr>
-						<div id="operationReporCalcResult">
+						<div id="dollOperationReportResult">
 							필요 작전보고서 : N/A
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4 py-3 bg-white">
+						<div class="text-center pb-0 pb-xl-4">
+							<h5>특수작전보고서 계산기</h5>
+							<hr>
+						</div>
+						<div class="form-row text-keep-all text-xl-nowrap">
+							<div class="col">
+								<label for="hocCurrentLv">현재 레벨</label>
+								<input type="number" class="form-control" id="hocCurrentLv" pattern="\d*">
+							</div>
+							<div class="col">
+								<label for="hocCurrentExp">현재 경험치</label>
+								<input type="number" class="form-control" id="hocCurrentExp" pattern="\d*">
+							</div>
+							<div class="col">
+								<label for="hocTargetLv">목표 레벨</label>
+								<input type="number" class="form-control" id="hocTargetLv" pattern="\d*">
+							</div>
+							<div class="col">
+								<label for="hocTrainingLv">훈련장 레벨</label>
+								<input type="number" class="form-control" id="hocTrainingGroundLv" pattern="\d*" value="10">
+							</div>
+						</div>
+						<hr>
+						<div id="hocOperationReportResult">
+							필요 작전보고서 : N/A<br>
+							훈련시간 : N/A<br>
+							전지 : N/A<br>
 						</div>
 					</div>
 				</div>
