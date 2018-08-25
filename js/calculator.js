@@ -118,10 +118,10 @@ function HocOperationReportCalc() {
 		trainingHour = Math.ceil(operationReport / PerHour[trainingGroundLv]);
 		battery = trainingHour * 5;
 
-		document.getElementById("hocOperationReportResult").innerText = "필요 작전보고서 : " + operationReport + " 개\n훈련시간 : " + trainingHour + " 시간\n전지 : " + battery + " 개";
+		document.getElementById("hocOperationReportResult").innerText = "필요 특수작전보고서 : " + operationReport + " 개\n훈련시간 : " + trainingHour + " 시간\n전지 : " + battery + " 개";
 	}
 	else {
-		document.getElementById("hocOperationReportResult").innerText = "필요 작전보고서 : N/A\n훈련시간 : N/A\n전지 : N/A";
+		document.getElementById("hocOperationReportResult").innerText = "필요 특수작전보고서 : N/A\n훈련시간 : N/A\n전지 : N/A";
 	}
 }
 
