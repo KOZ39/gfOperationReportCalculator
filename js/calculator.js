@@ -50,13 +50,12 @@ const squadAccExp = [
     12983000, 13464000, 13957000, 14463000, 15000000
 ];
 
-const PerHour = [
+const perHour = [
     1, 3, 3, 5, 7, 7, 9, 11, 11, 13, 15
 ];
 
 document.getElementById("oath").addEventListener("change", DollOperationReportCalc);
 document.getElementById("fairy").addEventListener("change", DollOperationReportCalc);
-
 document.getElementById("dollCurrentLv").addEventListener("keyup", DollOperationReportCalc);
 document.getElementById("dollCurrentExp").addEventListener("keyup", DollOperationReportCalc);
 document.getElementById("dollTargetLv").addEventListener("keyup", DollOperationReportCalc);
@@ -97,10 +96,10 @@ function DollOperationReportCalc() {
             operationReport += Math.ceil(((dollAccExp[targetLv] - dollAccExp[currentLv]) * fairy - currentExp) / 3000);
         }
 
-        document.getElementById("dollOperationReportResult").innerText = "필요 작전보고서 : " + operationReport + " 개";
+        document.getElementById("dollOperationReportCalcResult").innerText = "필요 작전보고서 : " + operationReport + " 개";
     }
     else {
-        document.getElementById("dollOperationReportResult").innerText = "필요 작전보고서 : N/A";
+        document.getElementById("dollOperationReportCalcResult").innerText = "필요 작전보고서 : N/A";
     }
 }
 
@@ -115,18 +114,18 @@ function HocOperationReportCalc() {
 
     if (IsValidLv(currentLv, currentExp, targetLv, 1, trainingGroundLv, squadAccExp)) {
         operationReport = Math.ceil((squadAccExp[targetLv] - squadAccExp[currentLv] - currentExp) / 3000);
-        trainingTime = Math.ceil(operationReport / PerHour[trainingGroundLv]);
+        trainingTime = Math.ceil(operationReport / perHour[trainingGroundLv]);
         battery = trainingTime * 5;
 
-        document.getElementById("hocOperationReportResult").innerText = "필요 특수작전보고서 : " + operationReport + " 개\n훈련시간 : " + trainingTime + " 시간\n전지 : " + battery + " 개";
+        document.getElementById("hocOperationReportCalcResult").innerText = "필요 특수작전보고서 : " + operationReport + " 개\n훈련시간 : " + trainingTime + " 시간\n전지 : " + battery + " 개";
     }
     else {
-        document.getElementById("hocOperationReportResult").innerText = "필요 특수작전보고서 : N/A\n훈련시간 : N/A\n전지 : N/A";
+        document.getElementById("hocOperationReportCalcResult").innerText = "필요 특수작전보고서 : N/A\n훈련시간 : N/A\n전지 : N/A";
     }
 }
 
 function IsValidLv(currentLv, currentExp, targetLv, fairy, trainingGroundLv, AccExp) {
-    if (currentLv < targetLv && currentExp >= 0 && (AccExp[currentLv+1] - AccExp[currentLv]) * fairy > currentExp && (fairy == 1 && targetLv < AccExp.length || fairy == 3 && targetLv <= 100) && trainingGroundLv >= 0 && PerHour.length > trainingGroundLv) {
+    if ((currentLv < targetLv) && (currentExp >= 0) && ((AccExp[currentLv+1] - AccExp[currentLv]) * fairy > currentExp) && ((fairy == 1 && targetLv < AccExp.length) || (fairy == 3 && targetLv <= 100)) && (trainingGroundLv >= 0) && (perHour.length > trainingGroundLv)) {
         return true;
     }
 
