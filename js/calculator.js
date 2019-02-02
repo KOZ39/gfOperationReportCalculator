@@ -96,10 +96,10 @@ function DollOperationReportCalc() {
             operationReport += Math.ceil(((dollAccExp[targetLv] - dollAccExp[currentLv]) * fairy - currentExp) / 3000);
         }
 
-        document.getElementById("dollOperationReportCalcResult").innerText = "필요 작전보고서 : " + operationReport + " 개";
+        document.getElementById("dollOperationReportCalcResult").innerHTML = "필요 작전보고서 : " + operationReport.toLocaleString() + "<small>개</small>";
     }
     else {
-        document.getElementById("dollOperationReportCalcResult").innerText = "필요 작전보고서 : N/A";
+        document.getElementById("dollOperationReportCalcResult").innerHTML = "필요 작전보고서 : N/A";
     }
 }
 
@@ -117,10 +117,10 @@ function HocOperationReportCalc() {
         trainingTime = Math.ceil(operationReport / perHour[trainingGroundLv]);
         battery = trainingTime * 5;
 
-        document.getElementById("hocOperationReportCalcResult").innerText = "필요 특수작전보고서 : " + operationReport + " 개\n훈련시간 : " + trainingTime + " 시간\n전지 : " + battery + " 개";
+        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요 특수작전보고서 : " + operationReport.toLocaleString() + "<small>개</small><br>훈련시간 : " + trainingTime.toLocaleString() + "<small>시간</small><br>전지 : " + battery.toLocaleString() + "<small>개</small>";
     }
     else {
-        document.getElementById("hocOperationReportCalcResult").innerText = "필요 특수작전보고서 : N/A\n훈련시간 : N/A\n전지 : N/A";
+        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A";
     }
 }
 
