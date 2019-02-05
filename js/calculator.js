@@ -1,4 +1,4 @@
-const dollAccExp = [
+const DOLL_ACC_EXP_LIST = [
     0,
     0, 100, 300, 600, 1000,
     1500, 2100, 2800, 3600, 4500,
@@ -26,7 +26,31 @@ const dollAccExp = [
     12283200, 15283200, 19283200, 24283200, 30283200
 ];
 
-const squadAccExp = [
+const FAIRY_ACC_EXP_LIST = [
+    0,
+    0, 300, 900, 1800, 3000,
+    4500, 6300, 8400, 10800, 13500,
+    16500, 19800, 23400, 27300, 31500,
+    36000, 40800, 45900, 51400, 57400,
+    63900, 71000, 79000, 88000, 98000,
+    109000, 121200, 134600, 149300, 165300,
+    182800, 201700, 222200, 244400, 268300,
+    294000, 321600, 351100, 382700, 416400,
+    452300, 490500, 531000, 574000, 619500,
+    667700, 718600, 772300, 828900, 888500,
+    951200, 1017100, 1086300, 1158900, 1234900,
+    1314500, 1397800, 1484800, 1575700, 1670600,
+    1769600, 1872700, 1980100, 2091900, 2208200,
+    2329100, 2454700, 2585100, 2720400, 2860800,
+    3006300, 3157100, 3313200, 3474800, 3642000,
+    3814900, 3993600, 4178300, 4369000, 4565900,
+    4768200, 4977800, 5193900, 5416700, 5646300,
+    5882800, 6126300, 6376900, 6634800, 6900100,
+    7172900, 7453300, 7741500, 8037600, 8341700,
+    8654000, 8974600, 9303600, 9641100, 9998100
+];
+
+const SQUAD_ACC_EXP_LIST = [
     0,
     0, 500, 1400, 2700, 4500,
     6700, 9400, 12600, 16200, 20200,
@@ -50,56 +74,126 @@ const squadAccExp = [
     12983000, 13464000, 13957000, 14463000, 15000000
 ];
 
-const perHour = [
+const PER_HOUR_LIST = [
     1, 3, 3, 5, 7, 7, 9, 11, 11, 13, 15
 ];
 
-document.getElementById("oath").addEventListener("change", DollOperationReportCalc);
-document.getElementById("fairy").addEventListener("change", DollOperationReportCalc);
-document.getElementById("dollCurrentLv").addEventListener("keyup", DollOperationReportCalc);
-document.getElementById("dollCurrentExp").addEventListener("keyup", DollOperationReportCalc);
-document.getElementById("dollTargetLv").addEventListener("keyup", DollOperationReportCalc);
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover({
+        placement : "bottom",
+        trigger : "focus",
+        title : "최대 현재 경험치",
+        html : true
+    });
+});
+
+document.getElementById("dfCurrentLv").addEventListener("keyup", ChangeDfPopoverData);
+document.getElementById("hocCurrentLv").addEventListener("keyup", ChangeHocPopoverData);
+
+document.getElementById("dfCurrentLv").addEventListener("keyup", DollOperationReportCalc);
+document.getElementById("dfCurrentExp").addEventListener("keyup", DollOperationReportCalc);
+document.getElementById("dfTargetLv").addEventListener("keyup", DollOperationReportCalc);
+
+document.getElementById("dfCurrentLv").addEventListener("keyup", FairyOperationReportCalc);
+document.getElementById("dfCurrentExp").addEventListener("keyup", FairyOperationReportCalc);
+document.getElementById("dfTargetLv").addEventListener("keyup", FairyOperationReportCalc);
 
 document.getElementById("hocCurrentLv").addEventListener("keyup", HocOperationReportCalc);
 document.getElementById("hocCurrentExp").addEventListener("keyup", HocOperationReportCalc);
 document.getElementById("hocTargetLv").addEventListener("keyup", HocOperationReportCalc);
 document.getElementById("hocTrainingGroundLv").addEventListener("keyup", HocOperationReportCalc);
 
-function DollOperationReportCalc() {
-    var oath = document.getElementById("oath").checked + 1;
-    var fairy = document.getElementById("fairy").checked ? 3 : 1;
-    var currentLv = Number(document.getElementById("dollCurrentLv").value);
-    var currentExp = Number(document.getElementById("dollCurrentExp").value);
-    var targetLv = Number(document.getElementById("dollTargetLv").value);
-    var operationReport = 0;
+function ChangeDfPopoverData() {
+    var dfCurrentLv = Number(document.getElementById("dfCurrentLv").value);
+    var dollMaxCurrentExp = 0;
+    var fairyMaxCurrentExp = 0;
 
-    if (IsValidLv(currentLv, currentExp, targetLv, fairy, 0, dollAccExp)) {
+    if (dfCurrentLv > 0 && dfCurrentLv >= 100 && dfCurrentLv < 120) {
+        dollMaxCurrentExp = "인형 : " + (DOLL_ACC_EXP_LIST[dfCurrentLv+1] - DOLL_ACC_EXP_LIST[dfCurrentLv] - 1).toLocaleString();
+        fairyMaxCurrentExp = "요정 : N/A";
+    }
+    else if (dfCurrentLv > 0 && dfCurrentLv < 100) {
+        dollMaxCurrentExp = "인형 : " + (DOLL_ACC_EXP_LIST[dfCurrentLv+1] - DOLL_ACC_EXP_LIST[dfCurrentLv] - 1).toLocaleString();
+        fairyMaxCurrentExp = "요정 : " + (FAIRY_ACC_EXP_LIST[dfCurrentLv+1] - FAIRY_ACC_EXP_LIST[dfCurrentLv] - 1).toLocaleString();
+    }
+    else {
+        dollMaxCurrentExp = "인형 : N/A";
+        fairyMaxCurrentExp = "요정 : N/A";
+    }
+
+    document.getElementById("dfCurrentExp").dataset.content = dollMaxCurrentExp + "<br>" + fairyMaxCurrentExp;
+}
+
+function ChangeHocPopoverData() {
+    var hocCurrentLv = Number(document.getElementById("hocCurrentLv").value);
+    var hocMaxCurrentExp = 0;
+
+    if (hocCurrentLv > 0 && hocCurrentLv < 100) {
+        hocMaxCurrentExp = "중장비 : " + (SQUAD_ACC_EXP_LIST[hocCurrentLv+1] - SQUAD_ACC_EXP_LIST[hocCurrentLv] - 1).toLocaleString();
+    }
+    else {
+        hocMaxCurrentExp = "중장비 : N/A";
+    }
+
+    document.getElementById("hocCurrentExp").dataset.content = hocMaxCurrentExp;
+}
+
+function DollOperationReportCalc() {
+    var currentLv = Number(document.getElementById("dfCurrentLv").value);
+    var currentExp = Number(document.getElementById("dfCurrentExp").value);
+    var targetLv = Number(document.getElementById("dfTargetLv").value);
+    var dollOperationReport = 0;
+    var oathOperationReport = 0;
+
+    if (IsValidLv(currentLv, currentExp, targetLv, 0, DOLL_ACC_EXP_LIST)) {
         if (targetLv > 115) {
-            operationReport += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 115)] - currentExp) / (3000 * oath));
+            dollOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 115)] - currentExp) / 3000);
+            oathOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 115)] - currentExp) / 6000);
             targetLv = 115;
             currentExp = 0;
         }
 
         if (targetLv > 110 && currentLv < 115) {
-            operationReport += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 110)] - currentExp) / (3000 * oath));
+            dollOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 110)] - currentExp) / 3000);
+            oathOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 110)] - currentExp) / 6000);
             targetLv = 110;
             currentExp = 0;
         }
 
         if (targetLv > 100 && currentLv < 110) {
-            operationReport += Math.ceil((dollAccExp[targetLv] - dollAccExp[Math.max(currentLv, 100)] - currentExp) / (3000 * oath));
+            dollOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 100)] - currentExp) / 3000);
+            oathOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 100)] - currentExp) / 6000);
             targetLv = 100;
             currentExp = 0;
         }
 
         if (targetLv <= 100 && currentLv < 100) {
-            operationReport += Math.ceil(((dollAccExp[targetLv] - dollAccExp[currentLv]) * fairy - currentExp) / 3000);
+            dollOperationReport += Math.ceil(((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[currentLv]) - currentExp) / 3000);
+            oathOperationReport += Math.ceil(((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[currentLv]) - currentExp) / 3000);
         }
 
-        document.getElementById("dollOperationReportCalcResult").innerHTML = "필요 작전보고서 : " + operationReport.toLocaleString() + "<small>개</small>";
+        document.getElementById("dollOperationReportCalcResult").innerHTML = "(인형) : " + dollOperationReport.toLocaleString() + "<small>개</small><br>(서약) : " + oathOperationReport.toLocaleString() + "<small>개</small>";
     }
     else {
-        document.getElementById("dollOperationReportCalcResult").innerHTML = "필요 작전보고서 : N/A";
+        document.getElementById("dollOperationReportCalcResult").innerHTML = "(인형) : N/A<br>(서약) : N/A";
+    }
+}
+
+function FairyOperationReportCalc() {
+    var currentLv = Number(document.getElementById("dfCurrentLv").value);
+    var currentExp = Number(document.getElementById("dfCurrentExp").value);
+    var targetLv = Number(document.getElementById("dfTargetLv").value);
+    var fairyOperationReport = 0;
+
+    if (IsValidLv(currentLv, currentExp, targetLv, 0, FAIRY_ACC_EXP_LIST)) {
+        if (targetLv <= 100 && currentLv < 100) {
+            fairyOperationReport += Math.ceil((FAIRY_ACC_EXP_LIST[targetLv] - FAIRY_ACC_EXP_LIST[currentLv] - currentExp) / 3000);
+        }
+
+        document.getElementById("fairyOperationReportCalcResult").innerHTML = "(요정) : " + fairyOperationReport.toLocaleString() + "<small>개</small>";
+    }
+    else {
+        document.getElementById("fairyOperationReportCalcResult").innerHTML = "(요정) : N/A";
     }
 }
 
@@ -112,20 +206,20 @@ function HocOperationReportCalc() {
     var trainingTime = 0;
     var battery = 0;
 
-    if (IsValidLv(currentLv, currentExp, targetLv, 1, trainingGroundLv, squadAccExp)) {
-        operationReport = Math.ceil((squadAccExp[targetLv] - squadAccExp[currentLv] - currentExp) / 3000);
-        trainingTime = Math.ceil(operationReport / perHour[trainingGroundLv]);
+    if (IsValidLv(currentLv, currentExp, targetLv, trainingGroundLv, SQUAD_ACC_EXP_LIST)) {
+        operationReport = Math.ceil((SQUAD_ACC_EXP_LIST[targetLv] - SQUAD_ACC_EXP_LIST[currentLv] - currentExp) / 3000);
+        trainingTime = Math.ceil(operationReport / PER_HOUR_LIST[trainingGroundLv]);
         battery = trainingTime * 5;
 
-        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요 특수작전보고서 : " + operationReport.toLocaleString() + "<small>개</small><br>훈련시간 : " + trainingTime.toLocaleString() + "<small>시간</small><br>전지 : " + battery.toLocaleString() + "<small>개</small>";
+        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요한 특수작전보고서 : " + operationReport.toLocaleString() + "<small>개</small><br>훈련시간 : " + trainingTime.toLocaleString() + "<small>시간</small><br>전지 : " + battery.toLocaleString() + "<small>개</small>";
     }
     else {
-        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A";
+        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요한 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A";
     }
 }
 
-function IsValidLv(currentLv, currentExp, targetLv, fairy, trainingGroundLv, AccExp) {
-    if ((currentLv < targetLv) && (currentExp >= 0) && ((AccExp[currentLv+1] - AccExp[currentLv]) * fairy > currentExp) && ((fairy == 1 && targetLv < AccExp.length) || (fairy == 3 && targetLv <= 100)) && (trainingGroundLv >= 0) && (perHour.length > trainingGroundLv)) {
+function IsValidLv(currentLv, currentExp, targetLv, trainingGroundLv, accExpList) {
+    if ((currentLv < targetLv) && (currentExp >= 0) && ((accExpList[currentLv+1] - accExpList[currentLv]) > currentExp) && (targetLv < accExpList.length) && (trainingGroundLv >= 0) && (PER_HOUR_LIST.length > trainingGroundLv)) {
         return true;
     }
 
