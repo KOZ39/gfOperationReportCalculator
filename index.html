@@ -14,14 +14,13 @@
             </div>
         </nav>
         <div class="container">
-            <div class="my-4">
+            <div class="mt-md-4">
                 <div class="row">
-                    <div class="col-md-6 col-lg-4 mb-4 mb-md-0 py-3 bg-white">
+                    <div class="col-md-6 col-lg-4 py-3 bg-white">
                         <div class="text-center">
                             <h5>작전보고서 계산기</h5>
-                            <hr>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row mb-3">
                             <div class="col">
                                 <label for="dfCurrentLv">현재 레벨</label>
                                 <input type="number" class="form-control" id="dfCurrentLv" pattern="\d*">
@@ -35,7 +34,6 @@
                                 <input type="number" class="form-control" id="dfTargetLv" pattern="\d*">
                             </div>
                         </div>
-                        <hr>
                         <div>필요 작전보고서
                             <div id="dollOperationReportCalcResult">(인형) : N/A<br>(서약) : N/A</div>
                             <div id="fairyOperationReportCalcResult">(요정) : N/A</div>
@@ -44,9 +42,8 @@
                     <div class="col-md-6 col-lg-4 py-3 bg-white">
                         <div class="text-center">
                             <h5>특수작전보고서 계산기</h5>
-                            <hr>
                         </div>
-                        <div class="form-row text-keep-all text-xl-nowrap">
+                        <div class="form-row text-keep-all text-xl-nowrap mb-3">
                             <div class="col">
                                 <label for="hocCurrentLv">현재 레벨</label>
                                 <input type="number" class="form-control" id="hocCurrentLv" pattern="\d*">
@@ -64,8 +61,12 @@
                                 <input type="number" class="form-control" id="hocTrainingGroundLv" pattern="\d*" value="10" min="0">
                             </div>
                         </div>
-                        <hr>
                         <div id="hocOperationReportCalcResult">필요 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A</div>
+                    </div>
+                    <div class="text-muted text-center p-3 w-100">
+                        <a href="https://github.com/KOZ39/gfOperationReportCalculator" class="text-decoration-none" target="_blank">GitHub</a>
+                        <small>|</small>
+                        <a href="https://t.me/koz39" class="text-decoration-none" target="_blank">Telegram</a>
                     </div>
                 </div>
             </div>

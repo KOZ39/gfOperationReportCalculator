@@ -13,7 +13,7 @@ input[type="number"] {
 }
 
 .text-keep-all label{
-    width: 65%;
+    width: 72%;
 }
 
 @media (min-width: 576px) {
@@ -31,9 +31,9 @@ input[type="number"] {
     }
     .text-md-keep-all {
         word-break: keep-all !important;
-    }    
+    }
 }
-    
+
 @media (min-width: 992px) {
     .text-lg-nowrap {
         white-space: nowrap !important;
