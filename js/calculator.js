@@ -74,9 +74,12 @@ const SQUAD_ACC_EXP_LIST = [
     12983000, 13464000, 13957000, 14463000, 15000000
 ];
 
-const PER_HOUR_LIST = [
+const REPORT_THROUGHPUT_PER_HOUR_LIST = [
     1, 3, 3, 5, 7, 7, 9, 11, 11, 13, 15
 ];
+
+const EXP_PER_REPORT = 3000;
+const OATH_MULTIPLE = 2;
 
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover({
@@ -87,21 +90,21 @@ $(document).ready(function() {
     });
 });
 
-document.getElementById("dfCurrentLv").addEventListener("keyup", ChangeDfPopoverData);
-document.getElementById("hocCurrentLv").addEventListener("keyup", ChangeHocPopoverData);
+document.getElementById("dfCurrentLv").addEventListener("input", ChangeDfPopoverData);
+document.getElementById("hocCurrentLv").addEventListener("input", ChangeHocPopoverData);
 
-document.getElementById("dfCurrentLv").addEventListener("keyup", DollOperationReportCalc);
-document.getElementById("dfCurrentExp").addEventListener("keyup", DollOperationReportCalc);
-document.getElementById("dfTargetLv").addEventListener("keyup", DollOperationReportCalc);
+document.getElementById("dfCurrentLv").addEventListener("input", DollOperationReportCalc);
+document.getElementById("dfCurrentExp").addEventListener("input", DollOperationReportCalc);
+document.getElementById("dfTargetLv").addEventListener("input", DollOperationReportCalc);
 
-document.getElementById("dfCurrentLv").addEventListener("keyup", FairyOperationReportCalc);
-document.getElementById("dfCurrentExp").addEventListener("keyup", FairyOperationReportCalc);
-document.getElementById("dfTargetLv").addEventListener("keyup", FairyOperationReportCalc);
+document.getElementById("dfCurrentLv").addEventListener("input", FairyOperationReportCalc);
+document.getElementById("dfCurrentExp").addEventListener("input", FairyOperationReportCalc);
+document.getElementById("dfTargetLv").addEventListener("input", FairyOperationReportCalc);
 
-document.getElementById("hocCurrentLv").addEventListener("keyup", HocOperationReportCalc);
-document.getElementById("hocCurrentExp").addEventListener("keyup", HocOperationReportCalc);
-document.getElementById("hocTargetLv").addEventListener("keyup", HocOperationReportCalc);
-document.getElementById("hocTrainingGroundLv").addEventListener("keyup", HocOperationReportCalc);
+document.getElementById("hocCurrentLv").addEventListener("input", HocOperationReportCalc);
+document.getElementById("hocCurrentExp").addEventListener("input", HocOperationReportCalc);
+document.getElementById("hocTargetLv").addEventListener("input", HocOperationReportCalc);
+document.getElementById("hocTrainingGroundLv").addEventListener("input", HocOperationReportCalc);
 
 function ChangeDfPopoverData() {
     var dfCurrentLv = Number(document.getElementById("dfCurrentLv").value);
@@ -140,39 +143,41 @@ function ChangeHocPopoverData() {
 
 function DollOperationReportCalc() {
     var currentLv = Number(document.getElementById("dfCurrentLv").value);
-    var currentExp = Number(document.getElementById("dfCurrentExp").value);
+    var currentExp = Math.max(Number(document.getElementById("dfCurrentExp").value), 0);
     var targetLv = Number(document.getElementById("dfTargetLv").value);
-    var dollOperationReport = 0;
-    var oathOperationReport = 0;
+    var operationReport = {
+        "doll": 0,
+        "oath": 0
+    };
 
-    if (IsValidLv(currentLv, currentExp, targetLv, 0, DOLL_ACC_EXP_LIST)) {
+    if (IsValidLv(currentLv, currentExp, targetLv, DOLL_ACC_EXP_LIST)) {
         if (targetLv > 115) {
-            dollOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 115)] - currentExp) / 3000);
-            oathOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 115)] - currentExp) / 6000);
+            operationReport.doll += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 115)] - currentExp) / EXP_PER_REPORT);
+            operationReport.oath += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 115)] - currentExp) / (EXP_PER_REPORT * OATH_MULTIPLE));
             targetLv = 115;
             currentExp = 0;
         }
 
         if (targetLv > 110 && currentLv < 115) {
-            dollOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 110)] - currentExp) / 3000);
-            oathOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 110)] - currentExp) / 6000);
+            operationReport.doll += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 110)] - currentExp) / EXP_PER_REPORT);
+            operationReport.oath += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 110)] - currentExp) / (EXP_PER_REPORT * OATH_MULTIPLE));
             targetLv = 110;
             currentExp = 0;
         }
 
         if (targetLv > 100 && currentLv < 110) {
-            dollOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 100)] - currentExp) / 3000);
-            oathOperationReport += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 100)] - currentExp) / 6000);
+            operationReport.doll += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 100)] - currentExp) / EXP_PER_REPORT);
+            operationReport.oath += Math.ceil((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[Math.max(currentLv, 100)] - currentExp) / (EXP_PER_REPORT * OATH_MULTIPLE));
             targetLv = 100;
             currentExp = 0;
         }
 
         if (targetLv <= 100 && currentLv < 100) {
-            dollOperationReport += Math.ceil(((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[currentLv]) - currentExp) / 3000);
-            oathOperationReport += Math.ceil(((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[currentLv]) - currentExp) / 3000);
+            operationReport.doll += Math.ceil(((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[currentLv]) - currentExp) / EXP_PER_REPORT);
+            operationReport.oath += Math.ceil(((DOLL_ACC_EXP_LIST[targetLv] - DOLL_ACC_EXP_LIST[currentLv]) - currentExp) / EXP_PER_REPORT);
         }
 
-        document.getElementById("dollOperationReportCalcResult").innerHTML = "(인형) : " + dollOperationReport.toLocaleString() + "<small>개</small><br>(서약) : " + oathOperationReport.toLocaleString() + "<small>개</small>";
+        document.getElementById("dollOperationReportCalcResult").innerHTML = "(인형) : " + operationReport.doll.toLocaleString() + "<small>개</small><br>(서약) : " + operationReport.oath.toLocaleString() + "<small>개</small>";
     }
     else {
         document.getElementById("dollOperationReportCalcResult").innerHTML = "(인형) : N/A<br>(서약) : N/A";
@@ -183,14 +188,14 @@ function FairyOperationReportCalc() {
     var currentLv = Number(document.getElementById("dfCurrentLv").value);
     var currentExp = Number(document.getElementById("dfCurrentExp").value);
     var targetLv = Number(document.getElementById("dfTargetLv").value);
-    var fairyOperationReport = 0;
+    var operationReport = 0;
 
-    if (IsValidLv(currentLv, currentExp, targetLv, 0, FAIRY_ACC_EXP_LIST)) {
+    if (IsValidLv(currentLv, currentExp, targetLv, FAIRY_ACC_EXP_LIST)) {
         if (targetLv <= 100 && currentLv < 100) {
-            fairyOperationReport += Math.ceil((FAIRY_ACC_EXP_LIST[targetLv] - FAIRY_ACC_EXP_LIST[currentLv] - currentExp) / 3000);
+            operationReport += Math.ceil((FAIRY_ACC_EXP_LIST[targetLv] - FAIRY_ACC_EXP_LIST[currentLv] - currentExp) / EXP_PER_REPORT);
         }
 
-        document.getElementById("fairyOperationReportCalcResult").innerHTML = "(요정) : " + fairyOperationReport.toLocaleString() + "<small>개</small>";
+        document.getElementById("fairyOperationReportCalcResult").innerHTML = "(요정) : " + operationReport.toLocaleString() + "<small>개</small>";
     }
     else {
         document.getElementById("fairyOperationReportCalcResult").innerHTML = "(요정) : N/A";
@@ -201,25 +206,30 @@ function HocOperationReportCalc() {
     var currentLv = Number(document.getElementById("hocCurrentLv").value);
     var currentExp = Number(document.getElementById("hocCurrentExp").value);
     var targetLv = Number(document.getElementById("hocTargetLv").value);
-    var trainingGroundLv = Number(document.getElementById("hocTrainingGroundLv").value);
+    var trainingGroundLv = Math.max(Number(document.getElementById("hocTrainingGroundLv").value), 0);
     var operationReport = 0;
     var trainingTime = 0;
     var battery = 0;
 
-    if (IsValidLv(currentLv, currentExp, targetLv, trainingGroundLv, SQUAD_ACC_EXP_LIST)) {
-        operationReport = Math.ceil((SQUAD_ACC_EXP_LIST[targetLv] - SQUAD_ACC_EXP_LIST[currentLv] - currentExp) / 3000);
-        trainingTime = Math.ceil(operationReport / PER_HOUR_LIST[trainingGroundLv]);
+    if (IsValidLv(currentLv, currentExp, targetLv, SQUAD_ACC_EXP_LIST, trainingGroundLv)) {
+        operationReport = Math.ceil((SQUAD_ACC_EXP_LIST[targetLv] - SQUAD_ACC_EXP_LIST[currentLv] - currentExp) / EXP_PER_REPORT);
+        trainingTime = Math.ceil(operationReport / REPORT_THROUGHPUT_PER_HOUR_LIST[trainingGroundLv]);
         battery = trainingTime * 5;
 
-        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요한 특수작전보고서 : " + operationReport.toLocaleString() + "<small>개</small><br>훈련시간 : " + trainingTime.toLocaleString() + "<small>시간</small><br>전지 : " + battery.toLocaleString() + "<small>개</small>";
+        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요 특수작전보고서 : " + operationReport.toLocaleString() + "<small>개</small><br>훈련시간 : " + trainingTime.toLocaleString() + "<small>시간</small><br>전지 : " + battery.toLocaleString() + "<small>개</small>";
     }
     else {
-        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요한 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A";
+        document.getElementById("hocOperationReportCalcResult").innerHTML = "필요 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A";
     }
 }
 
-function IsValidLv(currentLv, currentExp, targetLv, trainingGroundLv, accExpList) {
-    if ((currentLv < targetLv) && (currentExp >= 0) && ((accExpList[currentLv+1] - accExpList[currentLv]) > currentExp) && (targetLv < accExpList.length) && (trainingGroundLv >= 0) && (PER_HOUR_LIST.length > trainingGroundLv)) {
+function IsValidLv(currentLv, currentExp, targetLv, accExpList, trainingGroundLv=0) {
+    if (
+        currentLv < targetLv
+        && currentExp < accExpList[currentLv+1] - accExpList[currentLv]
+        && targetLv < accExpList.length
+        && trainingGroundLv < REPORT_THROUGHPUT_PER_HOUR_LIST.length
+    ) {
         return true;
     }
 

@@ -1,7 +1,7 @@
-<!Doctype html>
+<!doctype html>
 <html lang="ko">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="css/custom.min.css">
@@ -28,7 +28,7 @@
                             </div>
                             <div class="col">
                                 <label for="dfCurrentExp">현재 경험치</label>
-                                <input type="number" class="form-control" id="dfCurrentExp" pattern="\d*" data-toggle="popover" data-content="인형 : N/A<br>요정 : N/A">
+                                <input type="number" class="form-control" id="dfCurrentExp" pattern="\d*" data-toggle="popover" data-content="인형 : N/A<br>요정 : N/A" min="0">
                             </div>
                             <div class="col">
                                 <label for="dfTargetLv">목표 레벨</label>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <hr>
-                        <div>필요한 작전보고서
+                        <div>필요 작전보고서
                             <div id="dollOperationReportCalcResult">(인형) : N/A<br>(서약) : N/A</div>
                             <div id="fairyOperationReportCalcResult">(요정) : N/A</div>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col">
                                 <label for="hocCurrentExp">현재 경험치</label>
-                                <input type="number" class="form-control" id="hocCurrentExp" pattern="\d*" data-toggle="popover" data-content="중장비 : N/A">
+                                <input type="number" class="form-control" id="hocCurrentExp" pattern="\d*" data-toggle="popover" data-content="중장비 : N/A" min="0">
                             </div>
                             <div class="col">
                                 <label for="hocTargetLv">목표 레벨</label>
@@ -61,11 +61,11 @@
                             </div>
                             <div class="col">
                                 <label for="hocTrainingLv">훈련장 레벨</label>
-                                <input type="number" class="form-control" id="hocTrainingGroundLv" pattern="\d*" value="10">
+                                <input type="number" class="form-control" id="hocTrainingGroundLv" pattern="\d*" value="10" min="0">
                             </div>
                         </div>
                         <hr>
-                        <div id="hocOperationReportCalcResult">필요한 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A</div>
+                        <div id="hocOperationReportCalcResult">필요 특수작전보고서 : N/A<br>훈련시간 : N/A<br>전지 : N/A</div>
                     </div>
                 </div>
             </div>
